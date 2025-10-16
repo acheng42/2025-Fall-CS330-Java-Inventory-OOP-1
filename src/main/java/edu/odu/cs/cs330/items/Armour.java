@@ -42,6 +42,11 @@ public class Armour extends Equippable {
     public Armour(Armour src)
     {
         super(src.name);
+        super.setDurability(src.durability);
+        super.setMaterial(src.material);
+        super.setModifier(src.modifier);
+        super.setModifierLevel(src.modifierLevel);
+        super.setElement(src.element);
         this.defense = src.defense;
     }
 
