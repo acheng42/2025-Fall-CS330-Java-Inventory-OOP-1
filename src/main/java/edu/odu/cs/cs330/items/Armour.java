@@ -31,7 +31,6 @@ public class Armour extends Equippable {
     public Armour()
     {
         super();
-
         this.defense = 0;
     }
 
@@ -43,9 +42,7 @@ public class Armour extends Equippable {
     public Armour(Armour src)
     {
         super(src.name);
-
-        this.durability = src.durability;
-        // Copt the remaining fields (data members)
+        this.defense = src.defense;
     }
 
     /**
@@ -75,19 +72,29 @@ public class Armour extends Equippable {
     public void read(Scanner snr)
     {
         super.name = snr.next();
-
-        // Use snr.next() and snr.nextInt() to read in values remaining fields
-
+        super.material = snr.next();
+        super.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        super.modifier = snr.next();
+        super.modifierLevel = snr.nextInt();
+        super.element = snr.next();
     }
 
     /**
      * Clone--i.e., copy--this Armour.
      */
     @Override
-    public Item clone()
+    public Armour clone()
     {
-        // Replace the return
-        return new Armour();
+       Armour clone = new Armour();
+       clone.setName(this.name);
+       clone.setDurability(this.durability);
+       clone.setMaterial(this.material);
+       clone.setModifier(this.modifier);
+       clone.setModifierLevel(this.modifierLevel);
+       clone.setElement(this.element);
+       clone.setDefense(this.defense);
+       return clone;
     }
 
     /**
@@ -100,7 +107,16 @@ public class Armour extends Equippable {
         return String.join(
             System.lineSeparator(),
             String.format("  Nme: %s", super.getName()),
-            ""
+            System.lineSeparator(),
+            String.format("  Dur: %d", super.getDurability()),
+            System.lineSeparator(),
+            String.format("  Def: %d", this.getDefense()),
+            System.lineSeparator(),
+            String.format("  Mtl: %s", super.getMaterial()),
+            System.lineSeparator(),
+            String.format("  Mdr: %s (Lvl %d)", super.getModifier(), super.getModifierLevel()),
+            System.lineSeparator(),
+            String.format("  Emt: %s", super.getElement())
         );
     }
 }
